@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+  <title>Caps and Hats Compare</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- show the searched products -->
+    <div v-if="showProducts">
+      <!-- header -->
+      <header>
+        <div class="navbar navbar-dark bg-primary">
+          <div class="navbar­header">
+            <h1>Caps & Hats Compare</h1>
+          </div>
+          <div class="nav navbar­nav navbar ­right cart">
+          </div>
+        </div>
+      </header>
+      <!-- products and search bar -->
+      <div class="sort container mt-5">
+        <div class="row d-flex justify-content-center">
+
+          <div class="col-3">
+            <!-- search bar -->
+            
+            <h1>Check Prices </h1>
+            <input type="text" v-model="searchName" />
+            <button @click="getSearch">Search</button>
+
+          </div>
+        </div>
+
+
+
+        <!-- card body  -->
+        <!-- show the products searched -->
+        <div class="col-md">
+          <div>
+            <div class="row ">
+              <div class="card my-2 mx-2" style="width: 18rem;" v-for="product in products" :key="product.id">
+                <div class="row">
+                  <div class="col">
+                    <div class="card-body">
+                      <p>Click  below for prices</p>
+                      <a href="#" @click="compareProduct(product.id)">
+                        <p class="card-title">Title:{{product.name}}</p>
+                      </a>
+
+
+                    </div>
+                  </div>
+                  <div class="col">
+                    <img class="img-fluid img-thumbnail" v-bind:src="product.image_url">
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- show single product compare -->
+    <div v-else>
+      <!-- navigation bar -->
+      <header>
+        <div class="navbar navbar-dark bg-primary">
+          <div class="navbar­header">
+            <h1>Caps & Hats</h1>
+          </div>
+          <div class="nav navbar­nav navbar ­right cart">
+            <a href="http://localhost:3030/index.html"><button class="btn  btn-info  mx-4">
+                Home
+              </button>
+            </a>
+          </div>
+        </div>
+      </header>
+      <div class="sort container mt-5">
+
+        <!-- single product card -->
+        <div class="col-md">
+          <div>
+            <div class="row ">
+              <div class="card my-2 mx-2" style="width: 18rem;" v-for="productDetail in productDetails">
+                <div class="row">
+                  <div class="col">
+                    <div class="card-body">
+
+                      <p class="card-title">Product:{{productDetail.name}}</p>
+
+
+                      <p class="card-title">Colour:{{productDetail.colour}}</p>
+                      <p>Prices avalaible:</p>
+
+                    </div>
+                  </div>
+                  <div class="col">
+                    <img class="img-fluid img-thumbnail" v-bind:src="productDetail.image_url">
+                  </div>
+
+                  <!-- display the prices from with different links -->
+
+
+                  <div v-for="compareProd in compare ">
+
+
+                    <ul>
+
+                      <li>
+
+                        <a :href="compareProd.url" :class="{ active: activeLink == compareProd }">Link to website</a>
+                      </li>
+
+                      <li>Price:£{{compareProd.price}}
+                      </li>
+                    </ul>
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+  <script src="./caps.js"></script>
+
+</body>
+
+</html>
