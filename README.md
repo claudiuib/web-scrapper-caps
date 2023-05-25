@@ -22,3 +22,4 @@ The websites scrapped for this project are:
 • https://www.sportsdirect.com/
 • https://www.nike.com/
 • "https://www.ftshp.co.uk/
+![caps_compare](https://github.com/claudiuib/web-scrapper-caps/assets/95749647/a80bfe98-e343-4858-8c8a-5017d2eda77d)
